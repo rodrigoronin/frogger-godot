@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dfq2iqhuccltx"]
+
+[ext_resource type="Script" uid="uid://bit6j1i1d5r1a" path="res://scripts/game.gd" id="1_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://dghd7rii024ea" path="res://scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://disvdehejs6xw" path="res://scenes/house.tscn" id="3_lnu2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(5, 640)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+size = Vector2(384, 7.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iywne"]
+size = Vector2(383, 29)
+
+[node name="Game" type="Node2D" unique_id=1882979476]
+script = ExtResource("1_lbhrr")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=915374576]
+texture = ExtResource("1_uwrxv")
+
+[node name="Player" parent="." unique_id=835158253 instance=ExtResource("2_yqjtg")]
+position = Vector2(-104, 199)
+
+[node name="House" parent="." unique_id=1149125533 instance=ExtResource("3_lnu2h")]
+position = Vector2(5, 226)
+
+[node name="Borders" type="Node2D" parent="." unique_id=1482201261]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders" unique_id=1072227726]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D" unique_id=1180080553]
+position = Vector2(-193.5, 0)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Borders" unique_id=979306220]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2" unique_id=793409611]
+position = Vector2(194, 0)
+shape = SubResource("RectangleShape2D_lnu2h")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Borders" unique_id=1218556114]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3" unique_id=514157973]
+position = Vector2(0, -321)
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Borders" unique_id=414503830]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4" unique_id=901878553]
+position = Vector2(0, 320.5)
+shape = SubResource("RectangleShape2D_lbhrr")
+
+[node name="FinishArea2D" type="Area2D" parent="." unique_id=1347474167]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishArea2D" unique_id=700284326]
+position = Vector2(0.5, -210.5)
+shape = SubResource("RectangleShape2D_iywne")
+
+[node name="Timer" type="Timer" parent="." unique_id=374858932]
+
+[node name="CarTimer" type="Timer" parent="Timer" unique_id=326270179]
+autostart = true
+
+[connection signal="body_entered" from="FinishArea2D" to="." method="_on_finish_area_2d_body_entered"]
+[connection signal="timeout" from="Timer/CarTimer" to="." method="_on_car_timer_timeout"]
