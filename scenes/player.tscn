@@ -102,12 +102,13 @@ script = ExtResource("1_g2els")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=524040144]
 offset = Vector2(0, -20)
 zoom = Vector2(4, 4)
+process_callback = 0
 limit_left = -192
 limit_top = -300
 limit_right = 192
 limit_bottom = 340
 position_smoothing_enabled = true
-position_smoothing_speed = 10.0
+position_smoothing_speed = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=432952486]
 shape = SubResource("RectangleShape2D_g2els")
